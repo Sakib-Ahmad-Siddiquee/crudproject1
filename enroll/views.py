@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponseRedirect
 from .forms import StudentRegistration
 from .models import User
 # Create your views here.
@@ -13,4 +13,9 @@ def add_show(request):
         fm = StudentRegistration()
     stud = User.objects.all()
     return render(request, 'enroll/addandshow.html',{'form':fm, 'stu':stud})
-    
+
+def delete_data(request, id):
+    if request.method == 'POST':
+        pi = User.objects.get(pk=id)
+        pi.delete()
+    return HttpResponseRedirect('/')
