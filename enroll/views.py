@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .forms import StudentRegistration
+from .models import User
 # Create your views here.
 
 def add_show(request):
@@ -10,5 +11,6 @@ def add_show(request):
             return redirect('/')
     else:
         fm = StudentRegistration()
-    return render(request, 'enroll/addandshow.html',{'form':fm})
+    stud = User.objects.all()
+    return render(request, 'enroll/addandshow.html',{'form':fm, 'stu':stud})
     
