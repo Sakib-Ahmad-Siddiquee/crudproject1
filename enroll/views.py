@@ -20,6 +20,7 @@ def update_data(request,id):
         fm = StudentRegistration(request.POST, instance=pi)
         if fm.is_valid():
             fm.save()
+        return redirect('/')
     else:
         pi = User.objects.get(pk=id)
         fm = StudentRegistration(instance=pi)
